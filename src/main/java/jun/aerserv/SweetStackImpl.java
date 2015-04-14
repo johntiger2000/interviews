@@ -27,7 +27,7 @@ public class SweetStackImpl extends SimpleStack implements SweetStack {
 
     @Override
     public int max() {
-        if (size <= 0) {
+        if (size() <= 0) {
             throw new RuntimeException("No max in empty stack!");
         }
         return maxValues.head.val;
