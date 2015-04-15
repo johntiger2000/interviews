@@ -1,0 +1,3 @@
+Run:
+java -jar stack.jar
+and follow screen displays to play with the stack!
