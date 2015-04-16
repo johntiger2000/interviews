@@ -41,8 +41,8 @@ object World {
         }
         true
       }
+      case _ => false
     }
-    false
   }
     
   def moveDragon(): Boolean = {
@@ -50,13 +50,13 @@ object World {
       case Some(room) => {
         dragon.current = room
         if (player.current.id == dragon.current.id) {
-          player = new Creature(rooms(0), 0)
-          dragon = new Creature(rooms(8), 1)
+          player = initPlayer
+          dragon = initDragon
         }
         true
       }
+      case _ => false
     }
-    false
   }
   
   def initPlayer(): Creature = {
@@ -75,7 +75,6 @@ object World {
     visited(source.id) = List()
     var queue = new Queue[Room]()
     queue.enqueue(source)
-    // breath-first-search
     while (!queue.isEmpty) {
       var current = queue.dequeue
       current.corridors.filter(!_.isEmpty).filter(e => visited(e.get.id) == null).foreach( e => {
@@ -96,7 +95,6 @@ object World {
     var current = source
     var queue = new Queue[Room]()
     queue.enqueue(source)
-    // breath-first-search
     while (!queue.isEmpty) {
       current = queue.dequeue
       current.corridors.filter(e => !e.isEmpty && !visited(e.get.id)).foreach( e => {

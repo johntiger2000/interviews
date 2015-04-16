@@ -4,14 +4,28 @@ object Main {
 
   def main(args: Array[String]): Unit = {
     
-    World.initPlayer
-    World.initDragon
-    
     println("World created.")
+    var step = 0
     while (true) {
-      for (a <- 1 to 4) {
-        var userinput = readInt
-        World.movePlayer(Direction.East)
+      step += 1
+      step % 5 match {
+        case 0 => {
+            println("Dragon move")
+            println("== invisible to player == dragon is %s".format(World.dragon toString))
+            World.moveDragon
+            println("Player is %s".format(World.player toString))
+            println("== invisible to player == dragon is %s".format(World.dragon toString))
+        }
+        case _ => {
+            println("Player is %s".format(World.player toString))
+            println("== invisible to player == dragon is %s".format(World.dragon toString))
+            print("Input next move: ")
+            while (!World.movePlayer(Direction(readInt))) {
+              print("Invalid move. Try again")
+            }
+            println("Player is %s".format(World.player toString))
+            println("== invisible to player == dragon is %s".format(World.dragon toString))
+        }
       }
     }
     
