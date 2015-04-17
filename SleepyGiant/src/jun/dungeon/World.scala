@@ -77,7 +77,9 @@ object World {
     queue.enqueue(source)
     while (!queue.isEmpty) {
       var current = queue.dequeue
-      current.corridors.filter(!_.isEmpty).filter(e => visited(e.get.id) == null).foreach( e => {
+      current.corridors
+      .filter(e => !e.isEmpty && (visited(e.get.id) eq null))
+      .foreach( e => {
         var room = e.get
         visited(room.id) = visited(current.id) :+ room
         room.id match {
@@ -97,7 +99,9 @@ object World {
     queue.enqueue(source)
     while (!queue.isEmpty) {
       current = queue.dequeue
-      current.corridors.filter(e => !e.isEmpty && !visited(e.get.id)).foreach( e => {
+      current.corridors
+      .filter(e => !e.isEmpty && !visited(e.get.id))
+      .foreach( e => {
         var room = e.get
         visited(room.id) = true
         queue.enqueue(room)
