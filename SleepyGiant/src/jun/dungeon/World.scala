@@ -18,15 +18,15 @@ object World {
         new Room(8, "Burnt Sienna")
         )
     
-    rooms(0).setupCorridors(None, Some(rooms(1)), Some(rooms(5)), None);
-    rooms(1).setupCorridors(Some(rooms(0)), Some(rooms(2)), Some(rooms(1)), None);
-    rooms(2).setupCorridors(Some(rooms(1)), None, Some(rooms(3)), None);
-    rooms(3).setupCorridors(None, Some(rooms(6)), Some(rooms(5)), Some(rooms(4)));
-    rooms(4).setupCorridors(Some(rooms(0)), None, Some(rooms(8)), Some(rooms(0)));
-    rooms(5).setupCorridors(None, None, Some(rooms(7)), Some(rooms(4)));
-    rooms(6).setupCorridors(None, Some(rooms(2)), None, Some(rooms(8)));
-    rooms(7).setupCorridors(None, Some(rooms(8)), Some(rooms(8)), Some(rooms(2)));
-    rooms(8).setupCorridors(Some(rooms(3)), Some(rooms(6)), None, None);
+    rooms(0).corridors = Vector(None, Some(rooms(1)), Some(rooms(5)), None)
+    rooms(1).corridors = Vector(Some(rooms(0)), Some(rooms(2)), Some(rooms(1)), None)
+    rooms(2).corridors = Vector(Some(rooms(1)), None, Some(rooms(3)), None)
+    rooms(3).corridors = Vector(None, Some(rooms(6)), Some(rooms(5)), Some(rooms(4)))
+    rooms(4).corridors = Vector(Some(rooms(0)), None, Some(rooms(8)), Some(rooms(0)))
+    rooms(5).corridors = Vector(None, None, Some(rooms(7)), Some(rooms(4)))
+    rooms(6).corridors = Vector(None, Some(rooms(2)), None, Some(rooms(8)))
+    rooms(7).corridors = Vector(None, Some(rooms(8)), Some(rooms(8)), Some(rooms(2)))
+    rooms(8).corridors = Vector(Some(rooms(3)), Some(rooms(6)), None, None)
     
     var player = initPlayer
     var dragon = initDragon
