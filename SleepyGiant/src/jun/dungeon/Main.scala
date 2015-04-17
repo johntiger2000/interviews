@@ -13,18 +13,22 @@ object Main {
             println("Dragon move")
             println("== invisible to player == dragon is %s".format(World.dragon toString))
             World.moveDragon
-            println("Player is %s".format(World.player toString))
+            println("You are %s".format(World.player toString))
             println("== invisible to player == dragon is %s".format(World.dragon toString))
         }
         case _ => {
-            println("Player is %s".format(World.player toString))
+            println("You are %s".format(World.player toString))
             println("== invisible to player == dragon is %s".format(World.dragon toString))
             print("Input next move: ")
             while (!World.movePlayer(Direction(readInt))) {
               print("Invalid move. Try again")
             }
-            println("Player is %s".format(World.player toString))
+            println("You are %s".format(World.player toString))
             println("== invisible to player == dragon is %s".format(World.dragon toString))
+            if (World.player.gem >= 5) {
+              println("YOU WIN!!!")
+              return
+            }
         }
       }
     }

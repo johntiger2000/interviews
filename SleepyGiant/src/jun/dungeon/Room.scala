@@ -2,7 +2,7 @@ package jun.dungeon
 
 import jun.dungeon.Direction._
 
-class Room(val id: Int, val name: String) {
+case class Room(val id: Int, val name: String) {
   
   var gem: Int = 0
   var corridors: Vector[Option[Room]] = Vector.empty
@@ -12,7 +12,7 @@ class Room(val id: Int, val name: String) {
   }
 
   def setupCorridors(north: Option[Room], east: Option[Room], south: Option[Room], west: Option[Room]) = {
-    corridors = Vector() :+ north :+ east :+ south :+ west
+    corridors = Vector(north, east, south, west)
   }
   
 }

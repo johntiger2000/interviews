@@ -6,7 +6,7 @@ import scala.util.Random
 
 object World {
   
-    var rooms = List(
+    var rooms = Vector(
         new Room(0, "Vermillion"),
         new Room(1, "Ochre"),
         new Room(2, "Chartreuse"),
@@ -34,12 +34,14 @@ object World {
   def movePlayer(dir: Direction): Boolean = {
     player.current.getRoom(dir) match {
       case Some(room) => {
-        player.current = room
-        if (player.current.id == dragon.current.id) {
-          player.gem += 1
-          var dirs = player.current.corridors.filterNot(_.isEmpty)
+        if (room == dragon.current) {
+          room.gem += dragon.gem
+          var dirs = room.corridors.filterNot(_.isEmpty)
           dragon.current = dirs(Random.nextInt(dirs.size)).get
         }
+        player.current = room
+        player.gem += room.gem
+        room.gem = 0
         true
       }
       case _ => false
@@ -49,8 +51,9 @@ object World {
   def moveDragon(): Boolean = {
     getNextRoom(dragon.current, player.current) match {
       case Some(room) => {
-        dragon.current = room
-        if (player.current.id == dragon.current.id) {
+        if (room != player.current) {
+          dragon.current = room
+        } else {
           player = initPlayer
           dragon = initDragon
         }
