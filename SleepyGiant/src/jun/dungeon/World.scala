@@ -32,7 +32,7 @@ object World {
     var dragon = initDragon
     
   def movePlayer(dir: Direction): Boolean = {
-    player.current.getRoom(dir) match {
+    player.current.nextRoom(dir) match {
       case Some(room) => {
         if (room == dragon.current) {
           room.gem += dragon.gem
@@ -83,7 +83,7 @@ object World {
       var current = queue.dequeue
       current.corridors
       .filterNot(_.isEmpty)
-      .filter(e => visited(e.get.id) eq null)
+      .filter(e => visited(e.get.id) == null)
       .foreach(e => {
         var room = e.get
         visited(room.id) = visited(current.id) :+ room

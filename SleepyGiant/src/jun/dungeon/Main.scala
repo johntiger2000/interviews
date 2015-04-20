@@ -20,8 +20,9 @@ object Main {
             println("You are %s".format(World.player toString))
             println("== invisible to player == dragon is %s".format(World.dragon toString))
             print("Input next move: ")
+            // TODO: verify valid direction input
             while (!World.movePlayer(Direction(readInt))) {
-              print("Invalid move. Try again")
+              print("Invalid move. Try again: ")
             }
             println("You are %s".format(World.player toString))
             println("== invisible to player == dragon is %s".format(World.dragon toString))
