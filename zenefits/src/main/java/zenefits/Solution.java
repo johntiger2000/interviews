@@ -42,10 +42,8 @@ class Solution {
 			if (set.contains(A[i])) {
 				continue;
 			}
-			int total = 1;
-			while (total*A[i] <= N) {
-				total *= A[i];
-				set.add(total);
+			for (int j = 1; j*A[i] <= N; ++j) {
+				set.add(j*A[i]);
 			}
 		}
 		return N-set.size();
